@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Impact & Reports | Food Bridge</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+
+<body class="bg-gray-50">
+
+
+<div class="min-h-screen">
+
+
+    <!-- HEADER -->
+
+    <div class="bg-white border-b">
+
+        <div class="max-w-7xl mx-auto px-6 py-6">
+
+            <h1 class="text-3xl font-bold text-gray-800">
+                Impact & Reports
+            </h1>
+
+            <p class="text-gray-500 mt-1">
+                Track your NGO's contribution to reducing food waste.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MAIN -->
+
+    <main class="max-w-7xl mx-auto px-6 py-8">
+
+
+        <!-- IMPACT CARDS -->
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+
+
+            <!-- Total Donations -->
+
+            <div class="bg-white rounded-2xl border p-6 shadow-sm">
+
+                <div class="text-3xl mb-3">
+                    🍱
+                </div>
+
+                <p class="text-sm text-gray-500">
+                    Total Donations
+                </p>
+
+                <h2 class="text-3xl font-bold text-gray-800 mt-1">
+                    {{ total_donations }}
+                </h2>
+
+                <p class="text-xs text-gray-400 mt-2">
+                    Donations received
+                </p>
+
+            </div>
+
+
+            <!-- Accepted -->
+
+            <div class="bg-white rounded-2xl border p-6 shadow-sm">
+
+                <div class="text-3xl mb-3">
+                    🤝
+                </div>
+
+                <p class="text-sm text-gray-500">
+                    Accepted Donations
+                </p>
+
+                <h2 class="text-3xl font-bold text-gray-800 mt-1">
+                    {{ accepted_donations }}
+                </h2>
+
+                <p class="text-xs text-gray-400 mt-2">
+                    Successfully accepted
+                </p>
+
+            </div>
+
+
+            <!-- Completed -->
+
+            <div class="bg-white rounded-2xl border p-6 shadow-sm">
+
+                <div class="text-3xl mb-3">
+                    ✅
+                </div>
+
+                <p class="text-sm text-gray-500">
+                    Completed
+                </p>
+
+                <h2 class="text-3xl font-bold text-gray-800 mt-1">
+                    {{ completed_donations }}
+                </h2>
+
+                <p class="text-xs text-gray-400 mt-2">
+                    Successfully completed
+                </p>
+
+            </div>
+
+
+            <!-- Rejected -->
+
+            <div class="bg-white rounded-2xl border p-6 shadow-sm">
+
+                <div class="text-3xl mb-3">
+                    ❌
+                </div>
+
+                <p class="text-sm text-gray-500">
+                    Rejected
+                </p>
+
+                <h2 class="text-3xl font-bold text-gray-800 mt-1">
+                    {{ rejected_donations }}
+                </h2>
+
+                <p class="text-xs text-gray-400 mt-2">
+                    Donation requests rejected
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PERFORMANCE -->
+
+        <div class="bg-white rounded-2xl border shadow-sm p-6 mb-8">
+
+            <div class="flex justify-between items-center mb-6">
+
+                <div>
+
+                    <h2 class="text-xl font-semibold text-gray-800">
+                        Donation Performance
+                    </h2>
+
+                    <p class="text-sm text-gray-500 mt-1">
+                        Overview of your donation activities
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+
+
+                <div class="bg-gray-50 rounded-xl p-5">
+
+                    <p class="text-sm text-gray-500">
+                        Total
+                    </p>
+
+                    <p class="text-2xl font-bold text-gray-800 mt-1">
+                        {{ total_donations }}
+                    </p>
+
+                </div>
+
+
+                <div class="bg-gray-50 rounded-xl p-5">
+
+                    <p class="text-sm text-gray-500">
+                        Accepted
+                    </p>
+
+                    <p class="text-2xl font-bold text-gray-800 mt-1">
+                        {{ accepted_donations }}
+                    </p>
+
+                </div>
+
+
+                <div class="bg-gray-50 rounded-xl p-5">
+
+                    <p class="text-sm text-gray-500">
+                        Completed
+                    </p>
+
+                    <p class="text-2xl font-bold text-gray-800 mt-1">
+                        {{ completed_donations }}
+                    </p>
+
+                </div>
+
+
+                <div class="bg-gray-50 rounded-xl p-5">
+
+                    <p class="text-sm text-gray-500">
+                        Rejected
+                    </p>
+
+                    <p class="text-2xl font-bold text-gray-800 mt-1">
+                        {{ rejected_donations }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CHART SECTION -->
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+
+
+            <!-- Monthly Donations -->
+
+            <div class="bg-white rounded-2xl border shadow-sm p-6">
+
+                <h2 class="text-xl font-semibold text-gray-800">
+                    Monthly Donations
+                </h2>
+
+                <p class="text-sm text-gray-500 mt-1 mb-5">
+                    Donation activity throughout the year
+                </p>
+
+                <div class="h-72">
+
+                    <canvas id="monthlyChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Category Impact -->
+
+            <div class="bg-white rounded-2xl border shadow-sm p-6">
+
+                <h2 class="text-xl font-semibold text-gray-800">
+                    Food Category Impact
+                </h2>
+
+                <p class="text-sm text-gray-500 mt-1 mb-5">
+                    Distribution of donated food categories
+                </p>
+
+                <div class="h-72 flex justify-center">
+
+                    <canvas id="categoryChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RECENT COMPLETED -->
+
+        <div class="bg-white rounded-2xl border shadow-sm p-6 mb-8">
+
+            <div class="mb-5">
+
+                <h2 class="text-xl font-semibold text-gray-800">
+                    Recent Completed Donations
+                </h2>
+
+                <p class="text-sm text-gray-500 mt-1">
+                    Recently completed food donations
+                </p>
+
+            </div>
+
+
+            <div class="overflow-x-auto">
+
+                <table class="w-full text-left">
+
+                    <thead>
+
+                        <tr class="border-b text-sm text-gray-500">
+
+                            <th class="py-3 px-3">
+                                Food
+                            </th>
+
+                            <th class="py-3 px-3">
+                                Quantity
+                            </th>
+
+                            <th class="py-3 px-3">
+                                Donor
+                            </th>
+
+                            <th class="py-3 px-3">
+                                City
+                            </th>
+
+                            <th class="py-3 px-3">
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for donation in recent_completed %}
+
+                        <tr class="border-b last:border-0">
+
+                            <td class="py-4 px-3 font-medium text-gray-800">
+                                {{ donation.food_name }}
+                            </td>
+
+                            <td class="py-4 px-3 text-gray-600">
+                                {{ donation.quantity }}
+                            </td>
+
+                            <td class="py-4 px-3 text-gray-600">
+                                {{ donation.donor_name }}
+                            </td>
+
+                            <td class="py-4 px-3 text-gray-600">
+                                {{ donation.city }}
+                            </td>
+
+                            <td class="py-4 px-3">
+
+                                <span class="px-3 py-1 rounded-full
+                                             bg-green-100 text-green-700
+                                             text-xs font-medium">
+
+                                    Completed
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+
+                            <td colspan="5"
+                                class="py-10 text-center text-gray-500">
+
+                                No completed donations yet.
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- REPORT BUTTON -->
+
+        <div class="flex justify-end">
+
+            <button
+                onclick="window.print()"
+                class="px-6 py-3 bg-green-600 text-white
+                       rounded-xl font-medium
+                       hover:bg-green-700 transition">
+
+                📄 Generate Report
+
+            </button>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- CHART JS -->
+
+<script>
+
+    // Monthly Donations
+
+    const monthlyCtx =
+        document.getElementById('monthlyChart');
+
+    new Chart(monthlyCtx, {
+
+        type: 'bar',
+
+        data: {
+
+            labels: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ],
+
+            datasets: [{
+
+                label: 'Donations',
+
+                data: JSON.parse(
+    document.getElementById("monthly-data").textContent
+),
+                borderWidth: 1
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            scales: {
+
+                y: {
+
+                    beginAtZero: true,
+
+                    ticks: {
+
+                        precision: 0
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+
+
+    // Category Chart
+
+    const categoryCtx =
+        document.getElementById('categoryChart');
+
+    new Chart(categoryCtx, {
+
+        type: 'doughnut',
+
+        data: {
+
+         labels: JSON.parse(
+    document.getElementById("category-labels").textContent
+),
+
+data: JSON.parse(
+    document.getElementById("category-data").textContent
+),
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false
+
+        }
+
+    });
+
+</script>
+
+
+</body>
+</html>

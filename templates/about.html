@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+
+<div class="ml-0 md:ml-72 min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white p-8">
+
+<div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+
+<h1 class="text-4xl font-bold text-emerald-600 mb-6">
+🍽 About Food Bridge
+</h1>
+
+<p class="text-lg leading-8">
+
+Food Bridge is a food donation platform that connects food donors with NGOs to reduce food waste and help people in need.
+
+</p>
+
+<div class="mt-8 space-y-4">
+
+<p>✅ Donate extra food easily.</p>
+
+<p>🏢 Connect with nearby NGOs.</p>
+
+<p>📦 Track your donation history.</p>
+
+<p>🔔 Receive real-time notifications.</p>
+
+<p>🌍 Help reduce food waste.</p>
+
+</div>
+
+<div class="mt-10">
+
+<a href="{% url 'setting' %}"
+class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl">
+
+← Back to Settings
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

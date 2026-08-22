@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="max-w-6xl mx-auto px-6 py-8">
+
+    <h1 class="text-3xl font-bold mb-6">
+        Available Food Donations
+    </h1>
+
+    {% for donation in donations %}
+
+    <div class="bg-white rounded-xl shadow-md p-5 mb-5">
+
+        <div class="flex gap-5">
+
+            {% if donation.food_image %}
+                <img src="{{ donation.food_image.url }}"
+                     class="w-32 h-32 object-cover rounded-lg">
+            {% endif %}
+
+            <div class="flex-1">
+
+                <h2 class="text-xl font-bold">
+                    {{ donation.food_name }}
+                </h2>
+
+                <p>Donor: {{ donation.donor_name }}</p>
+
+                <p>Category: {{ donation.category }}</p>
+
+                <p>Quantity: {{ donation.quantity }}</p>
+
+                <p>City: {{ donation.city }}</p>
+
+                <p>
+                    Expires:
+                    {{ donation.expiry_time }}
+                </p>
+
+                <span class="inline-block mt-2 px-3 py-1
+                             bg-yellow-100 text-yellow-700
+                             rounded-full">
+                    {{ donation.status }}
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+        <p class="text-gray-500">
+            No food donations available.
+        </p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

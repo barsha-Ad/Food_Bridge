@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Food Bridge - Home{% endblock %}
+
+{% block content %}
+
+<div class="ml-0 md:ml-72 min-h-screen bg-gradient-to-br from-emerald-50 via-white to-orange-50">
+
+    <!-- Hero -->
+    <section class="px-8 py-20">
+
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+
+            <div>
+
+                <span class="bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold">
+                    🌱 Save Food • Save Lives
+                </span>
+
+                <h1 class="text-6xl font-extrabold text-gray-800 mt-6 leading-tight">
+                    Bridge the Gap Between
+                    <span class="text-emerald-600">
+                        Food & People
+                    </span>
+                </h1>
+
+                <p class="text-gray-600 text-lg mt-6 leading-8">
+                    Food Bridge connects restaurants, hotels and individuals
+                    with NGOs to reduce food waste and help hungry people.
+                </p>
+
+                <div class="mt-8 flex gap-4">
+
+                    <a href="/dashboard"
+                    class="bg-emerald-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-emerald-700">
+
+                        Donate Food
+
+                    </a>
+
+                    <a href="#"
+                    class="border-2 border-emerald-600 text-emerald-600 px-8 py-4 rounded-xl font-semibold hover:bg-emerald-600 hover:text-white">
+
+                        Learn More
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div>
+
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800"
+                class="rounded-3xl shadow-2xl">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Features -->
+
+    <section class="max-w-6xl mx-auto px-8 pb-20">
+
+        <h2 class="text-4xl font-bold text-center mb-12">
+            Why Choose Food Bridge?
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <div class="bg-white p-8 rounded-3xl shadow-lg">
+
+                <div class="text-5xl">🍱</div>
+
+                <h3 class="text-2xl font-bold mt-4">
+                    Donate Easily
+                </h3>
+
+                <p class="text-gray-600 mt-3">
+                    Donate extra food within minutes.
+                </p>
+
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-lg">
+
+                <div class="text-5xl">🏢</div>
+
+                <h3 class="text-2xl font-bold mt-4">
+                    NGO Support
+                </h3>
+
+                <p class="text-gray-600 mt-3">
+                    NGOs receive requests instantly.
+                </p>
+
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-lg">
+
+                <div class="text-5xl">🌍</div>
+
+                <h3 class="text-2xl font-bold mt-4">
+                    Reduce Waste
+                </h3>
+
+                <p class="text-gray-600 mt-3">
+                    Every meal saved helps someone in need.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

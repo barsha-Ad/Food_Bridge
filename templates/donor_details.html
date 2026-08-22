@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="ml-0 md:ml-64 p-6 bg-gray-100 min-h-screen">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+
+        <div class="bg-emerald-600 text-white p-5">
+            <h1 class="text-2xl font-bold">
+                Donor Details
+            </h1>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 p-6">
+
+            <div>
+
+                {% if donation.food_image %}
+                <img src="{{ donation.food_image.url }}"
+                     class="w-full h-72 object-cover rounded-lg">
+                {% else %}
+                <div class="w-full h-72 bg-gray-200 flex items-center justify-center rounded-lg">
+                    No Image
+                </div>
+                {% endif %}
+
+            </div>
+
+            <div class="space-y-4">
+
+                <p><strong>Donor Name:</strong> {{ donation.donor_name }}</p>
+
+                <p><strong>Email:</strong> {{ donation.email }}</p>
+
+                <p><strong>Phone:</strong> {{ donation.phone }}</p>
+
+                <p><strong>Food Name:</strong> {{ donation.food_name }}</p>
+
+                <p><strong>Category:</strong> {{ donation.category }}</p>
+
+                <p><strong>Quantity:</strong> {{ donation.quantity }}</p>
+
+                <p><strong>City:</strong> {{ donation.city }}</p>
+
+                <p><strong>Pickup Address:</strong> {{ donation.pickup_address }}</p>
+
+                <p><strong>Expiry Time:</strong> {{ donation.expiry_time }}</p>
+
+                <p>
+                    <strong>Status:</strong>
+
+                    {% if donation.status == "Pending" %}
+                    <span class="bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full">
+                        Pending
+                    </span>
+
+                    {% elif donation.status == "Accepted" %}
+                    <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full">
+                        Accepted
+                    </span>
+
+                    {% else %}
+                    <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full">
+                        Completed
+                    </span>
+                    {% endif %}
+                </p>
+
+                <a href="{% url 'ngo_dashboard' %}"
+                   class="inline-block bg-emerald-600 text-white px-5 py-2 rounded-lg hover:bg-emerald-700">
+                    ← Back to Dashboard
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

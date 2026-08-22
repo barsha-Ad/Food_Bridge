@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title %}Donation Requests{% endblock %}
+
+{% block content %}
+
+<main class="min-h-screen bg-slate-50 p-6 lg:p-8">
+
+    <!-- HEADER -->
+
+    <div class="mb-8">
+
+        <h1 class="text-3xl font-bold text-slate-800">
+            New Donation Requests
+        </h1>
+
+        <p class="text-slate-500 mt-2">
+            New food donation requests received by your NGO.
+        </p>
+
+    </div>
+
+
+    {% if requests %}
+
+        <div class="space-y-5">
+
+            {% for item in requests %}
+
+            <div class="bg-white rounded-2xl
+                        border border-slate-200
+                        shadow-sm p-6
+                        hover:shadow-md transition">
+
+                <div class="flex flex-col md:flex-row
+                            md:items-center
+                            md:justify-between gap-6">
+
+
+                    <!-- FOOD INFORMATION -->
+
+                    <div>
+
+                        <h2 class="text-xl font-bold text-slate-800">
+                            {{ item.food.food_name }}
+                        </h2>
+
+                        <p class="text-sm text-slate-500 mt-2">
+                            Donor:
+                            <span class="font-medium text-slate-700">
+                                {{ item.donor.username }}
+                            </span>
+                        </p>
+
+                        <div class="flex flex-wrap gap-4 mt-3
+                                    text-sm text-slate-500">
+
+                            <span>
+                                🍱 {{ item.food.quantity }}
+                            </span>
+
+                            <span>
+                                📂 {{ item.food.category }}
+                            </span>
+
+                            <span>
+                                📍 {{ item.food.city }}
+                            </span>
+
+                        </div>
+
+                        <p class="text-xs text-slate-400 mt-3">
+                            Request received:
+                            {{ item.created_at|date:"d M Y, h:i A" }}
+                        </p>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div>
+
+                        <span class="inline-flex
+                                     px-4 py-2
+                                     rounded-full
+                                     bg-amber-50
+                                     text-amber-700
+                                     text-sm
+                                     font-semibold">
+
+                            ● New Request
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+        <!-- EMPTY -->
+
+        <div class="bg-white rounded-2xl
+                    border border-slate-200
+                    text-center
+                    py-20">
+
+            <div class="text-6xl mb-5">
+                📭
+            </div>
+
+            <h2 class="text-xl font-bold text-slate-700">
+                No New Requests
+            </h2>
+
+            <p class="text-sm text-slate-500 mt-2">
+                You don't have any new donation requests right now.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</main>
+
+{% endblock %}

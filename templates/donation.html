@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}My Donations{% endblock %}
+
+{% block content %}
+
+<div class="ml-0 md:ml-72 p-8 bg-gray-100 min-h-screen">
+
+    <div class="flex justify-between items-center mb-8">
+
+        <h1 class="text-4xl font-bold">
+            📦 My Donations
+        </h1>
+
+        <a href="{% url 'donate_food' %}"
+        class="bg-emerald-600 text-white px-5 py-3 rounded-xl hover:bg-emerald-700">
+
+            + Donate Food
+
+        </a>
+
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg overflow-x-auto">
+
+        <table class="w-full">
+
+            <thead class="bg-emerald-600 text-white">
+
+                <tr>
+
+                    <th class="p-4">ID</th>
+                    <th>Food</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for donation in donations %}
+
+                <tr class="border-b hover:bg-gray-50">
+
+                    <td class="p-4">{{ donation.id }}</td>
+
+                    <td>{{ donation.food_name }}</td>
+
+                    <td>{{ donation.category }}</td>
+
+                    <td>{{ donation.quantity }}</td>
+
+                    <td>
+
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">
+
+                            {{ donation.status }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a href="#"
+                        class="bg-blue-500 text-white px-3 py-2 rounded-lg">
+
+                            Edit
+
+                        </a>
+
+                        <a href="#"
+                        class="bg-red-500 text-white px-3 py-2 rounded-lg ml-2">
+
+                            Delete
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% empty %}
+
+                <tr>
+
+                    <td colspan="6" class="text-center py-10 text-gray-500">
+
+                        No donations found.
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

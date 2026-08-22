@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Request Donation{% endblock %}
+
+{% block content %}
+
+<div class="min-h-screen bg-slate-50 p-6 lg:p-8">
+
+    <div class="max-w-3xl mx-auto">
+
+        <div class="bg-white rounded-2xl shadow-sm
+                    border border-slate-200 p-8">
+
+            <h1 class="text-2xl font-bold text-slate-800">
+                🤝 Request Donation
+            </h1>
+
+            <p class="text-slate-500 mt-2">
+                You are requesting donation support from:
+            </p>
+
+            <div class="mt-6 bg-emerald-50 rounded-xl p-5">
+
+                <h2 class="text-xl font-bold text-emerald-800">
+                    {{ ngo.name }}
+                </h2>
+
+                <p class="text-sm text-slate-600 mt-2">
+                    📍 {{ ngo.city }}
+                </p>
+
+                <p class="text-sm text-slate-600 mt-1">
+                    📞 {{ ngo.phone }}
+                </p>
+
+            </div>
+
+            <!-- <button
+                class="mt-6 px-6 py-3
+                       bg-emerald-600 text-white
+                       rounded-xl font-semibold
+                       hover:bg-emerald-700 transition">
+
+                Send Donation Request
+
+            </button> -->
+            <a href="{% url 'send_donation_request' ngo.id %}"
+   class="inline-block mt-6 px-6 py-3
+          bg-emerald-600 text-white
+          rounded-xl font-semibold
+          hover:bg-emerald-700 transition">
+
+    Send Donation Request
+
+</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

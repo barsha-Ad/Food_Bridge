@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}Donate Food{% endblock %}
+
+{% block content %}
+
+<div class="ml-0 md:ml-72 min-h-screen bg-gray-100 p-8">
+
+    <div class="max-w-5xl mx-auto bg-white shadow-xl rounded-3xl overflow-hidden">
+
+        <div class="bg-emerald-600 text-white p-6">
+            <h1 class="text-4xl font-bold">🍱 Donate Food</h1>
+            <p class="mt-2 text-emerald-100">
+                Share your extra food with people in need.
+            </p>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" class="p-8">
+            {% csrf_token %}
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <div>
+                    <label class="block font-semibold mb-2">Donor Name</label>
+                    {{ form.donor_name }}
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-2">Phone Number</label>
+                    {{ form.phone }}
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-2">Email</label>
+                    {{ form.email }}
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-2">Food Name</label>
+                    {{ form.food_name }}
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-2">Food Category</label>
+                    {{ form.category }}
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-2">Quantity</label>
+                    {{ form.quantity }}
+                </div>
+
+                <div class="md:col-span-2">
+                    <label class="block font-semibold mb-2">Pickup Address</label>
+                    {{ form.pickup_address }}
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-2">City</label>
+                    {{ form.city }}
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-2">Expiry Time</label>
+                    {{ form.expiry_time }}
+                </div>
+
+                <div class="md:col-span-2">
+                    <label class="block font-semibold mb-2">Food Image</label>
+                    {{ form.food_image }}
+                </div>
+
+            </div>
+
+            <div class="mt-8">
+                <button type="submit"
+                    class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 rounded-xl text-lg font-semibold transition">
+                    Donate Now
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

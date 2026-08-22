@@ -1,0 +1,768 @@
+{% extends 'base.html' %}
+
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+
+<main class="flex-1 min-h-screen bg-[#f7faf9] p-5 lg:p-8">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="flex flex-col lg:flex-row lg:items-center
+                lg:justify-between gap-5 mb-8">
+
+        <div>
+
+            <div class="flex items-center gap-2 mb-2">
+                <span class="w-2 h-2 rounded-full bg-teal-500"></span>
+
+                <p class="text-xs font-bold tracking-[0.2em]
+                          text-teal-600 uppercase">
+                    Donor Dashboard
+                </p>
+            </div>
+
+            <h1 class="text-3xl lg:text-4xl font-bold text-slate-900">
+                Welcome back, {{ request.user.username }}
+            </h1>
+
+            <p class="text-slate-500 mt-2">
+                Here's what's happening with your food donations.
+            </p>
+
+        </div>
+
+
+        <a href="{% url 'donation' %}"
+           class="inline-flex items-center justify-center gap-2
+                  px-5 py-3
+                  rounded-xl
+                  bg-slate-900
+                  text-white
+                  text-sm font-semibold
+                  shadow-sm
+                  hover:bg-teal-600
+                  transition">
+
+            <span class="text-lg leading-none">+</span>
+            Donate Food
+
+        </a>
+
+    </div>
+
+
+    <!-- ================= STAT CARDS ================= -->
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4
+                gap-4 mb-7">
+
+
+        <!-- TOTAL -->
+
+        <div class="bg-white rounded-2xl
+                    border border-slate-200
+                    p-5
+                    hover:shadow-md
+                    transition">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+
+                    <p class="text-sm text-slate-500">
+                        Total Donations
+                    </p>
+
+                    <h2 class="text-3xl font-bold
+                               text-slate-900 mt-2">
+                        {{ total }}
+                    </h2>
+
+                </div>
+
+                <div class="w-11 h-11 rounded-xl
+                            bg-teal-50
+                            text-teal-600
+                            flex items-center justify-center
+                            text-xl">
+                    🍱
+                </div>
+
+            </div>
+
+            <div class="mt-4 h-1 rounded-full bg-teal-100">
+                <div class="h-1 w-3/4 rounded-full bg-teal-500"></div>
+            </div>
+
+        </div>
+
+
+        <!-- AVAILABLE -->
+
+        <div class="bg-white rounded-2xl
+                    border border-slate-200
+                    p-5
+                    hover:shadow-md
+                    transition">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+
+                    <p class="text-sm text-slate-500">
+                        Available
+                    </p>
+
+                    <h2 class="text-3xl font-bold
+                               text-amber-600 mt-2">
+                        {{ available }}
+                    </h2>
+
+                </div>
+
+                <div class="w-11 h-11 rounded-xl
+                            bg-amber-50
+                            text-amber-600
+                            flex items-center justify-center
+                            text-xl">
+                    📦
+                </div>
+
+            </div>
+
+            <div class="mt-4 h-1 rounded-full bg-amber-100">
+                <div class="h-1 w-3/4 rounded-full bg-amber-400"></div>
+            </div>
+
+        </div>
+
+
+        <!-- DELIVERED -->
+
+        <div class="bg-white rounded-2xl
+                    border border-slate-200
+                    p-5
+                    hover:shadow-md
+                    transition">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+
+                    <p class="text-sm text-slate-500">
+                        Delivered
+                    </p>
+
+                    <h2 class="text-3xl font-bold
+                               text-emerald-600 mt-2">
+                        {{ delivered }}
+                    </h2>
+
+                </div>
+
+                <div class="w-11 h-11 rounded-xl
+                            bg-emerald-50
+                            text-emerald-600
+                            flex items-center justify-center
+                            text-xl">
+                    🚚
+                </div>
+
+            </div>
+
+            <div class="mt-4 h-1 rounded-full bg-emerald-100">
+                <div class="h-1 w-1/2 rounded-full bg-emerald-500"></div>
+            </div>
+
+        </div>
+
+
+        <!-- NGO -->
+
+        <div class="bg-white rounded-2xl
+                    border border-slate-200
+                    p-5
+                    hover:shadow-md
+                    transition">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+
+                    <p class="text-sm text-slate-500">
+                        NGO Partners
+                    </p>
+
+                    <h2 class="text-3xl font-bold
+                               text-blue-600 mt-2">
+                        {{ ngo }}
+                    </h2>
+
+                </div>
+
+                <div class="w-11 h-11 rounded-xl
+                            bg-blue-50
+                            text-blue-600
+                            flex items-center justify-center
+                            text-xl">
+                    🤝
+                </div>
+
+            </div>
+
+            <div class="mt-4 h-1 rounded-full bg-blue-100">
+                <div class="h-1 w-2/3 rounded-full bg-blue-500"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MAIN ANALYTICS ================= -->
+
+    <div class="grid grid-cols-1 xl:grid-cols-3
+                gap-5 mb-7">
+
+
+        <!-- DONATION CATEGORY -->
+
+        <div class="xl:col-span-2
+                    bg-white
+                    rounded-2xl
+                    border border-slate-200
+                    p-6">
+
+            <div class="flex items-center justify-between mb-5">
+
+                <div>
+
+                    <h2 class="text-lg font-bold text-slate-800">
+                        Donation Categories
+                    </h2>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                        Overview of the food you have donated
+                    </p>
+
+                </div>
+
+                <div class="w-10 h-10 rounded-xl
+                            bg-slate-100
+                            flex items-center justify-center">
+                    📊
+                </div>
+
+            </div>
+
+
+            <!-- Django data -->
+
+            <div id="categoryData" class="hidden">
+
+                {% for item in category %}
+
+                    <span class="category-label">
+                        {{ item.category }}
+                    </span>
+
+                    <span class="category-total">
+                        {{ item.total }}
+                    </span>
+
+                {% endfor %}
+
+            </div>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2
+                        items-center gap-6">
+
+                <!-- CHART -->
+
+                <div class="h-64 relative">
+
+                    <canvas id="categoryChart"></canvas>
+
+                </div>
+
+
+                <!-- CATEGORY LIST -->
+
+                <div>
+
+                    <p class="text-xs uppercase
+                              tracking-wider
+                              text-slate-400
+                              font-semibold mb-4">
+
+                        Categories
+
+                    </p>
+
+
+                    <div id="categoryList"
+                         class="space-y-3">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= IMPACT CARD ================= -->
+
+        <div class="rounded-2xl
+                    bg-slate-900
+                    p-6
+                    text-white
+                    relative
+                    overflow-hidden">
+
+
+            <!-- decorative circles -->
+
+            <div class="absolute
+                        -right-16
+                        -top-16
+                        w-40 h-40
+                        rounded-full
+                        bg-teal-400/10">
+            </div>
+
+            <div class="absolute
+                        -left-20
+                        -bottom-20
+                        w-44 h-44
+                        rounded-full
+                        bg-teal-400/5">
+            </div>
+
+
+            <div class="relative">
+
+                <div class="w-12 h-12 rounded-xl
+                            bg-teal-400/10
+                            border border-teal-400/20
+                            flex items-center justify-center
+                            text-xl mb-7">
+
+                    ❤️
+
+                </div>
+
+
+                <p class="text-xs font-bold
+                          tracking-[0.18em]
+                          uppercase
+                          text-teal-400">
+
+                    Your Impact
+
+                </p>
+
+
+                <h2 class="text-2xl font-bold mt-3
+                           leading-tight">
+
+                    Every donation
+                    <br>
+                    makes a difference.
+
+                </h2>
+
+
+                <p class="text-sm text-slate-400
+                          leading-6 mt-4">
+
+                    Your contribution helps reduce
+                    food waste and connects surplus
+                    food with people who need it.
+
+                </p>
+
+
+                <div class="mt-7
+                            border-t border-white/10
+                            pt-5">
+
+                    <div class="flex items-center
+                                justify-between">
+
+                        <span class="text-sm text-slate-400">
+                            Total contribution
+                        </span>
+
+                        <span class="text-xl font-bold
+                                     text-teal-400">
+
+                            {{ total }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <a href="{% url 'donation' %}"
+                   class="mt-6
+                          w-full
+                          flex items-center
+                          justify-center
+                          gap-2
+                          py-3
+                          rounded-xl
+                          bg-teal-400
+                          text-slate-950
+                          font-bold
+                          text-sm
+                          hover:bg-teal-300
+                          transition">
+
+                    Donate Food
+                    <span>→</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= RECENT DONATIONS ================= -->
+
+    <div class="bg-white
+                rounded-2xl
+                border border-slate-200
+                overflow-hidden">
+
+
+        <div class="p-6
+                    border-b border-slate-100
+                    flex flex-col sm:flex-row
+                    sm:items-center
+                    sm:justify-between
+                    gap-3">
+
+            <div>
+
+                <h2 class="text-lg font-bold text-slate-800">
+                    Recent Donations
+                </h2>
+
+                <p class="text-sm text-slate-500 mt-1">
+                    Your latest donation activity
+                </p>
+
+            </div>
+
+
+            <a href="{% url 'history' %}"
+               class="text-sm font-semibold
+                      text-teal-600
+                      hover:text-teal-700">
+
+                View All →
+
+            </a>
+
+        </div>
+
+
+        {% if recent %}
+
+        <div class="overflow-x-auto">
+
+            <table class="w-full text-sm">
+
+                <thead>
+
+                    <tr class="bg-slate-50
+                               text-left
+                               text-xs
+                               uppercase
+                               tracking-wide
+                               text-slate-500">
+
+                        <th class="px-6 py-4">
+                            Food
+                        </th>
+
+                        <th class="px-6 py-4">
+                            Category
+                        </th>
+
+                        <th class="px-6 py-4">
+                            Quantity
+                        </th>
+
+                        <th class="px-6 py-4">
+                            City
+                        </th>
+
+                        <th class="px-6 py-4">
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody class="divide-y divide-slate-100">
+
+                    {% for donation in recent %}
+
+                    <tr class="hover:bg-slate-50 transition">
+
+
+                        <td class="px-6 py-4">
+
+                            <span class="font-semibold
+                                         text-slate-800">
+
+                                {{ donation.food_name }}
+
+                            </span>
+
+                        </td>
+
+
+                        <td class="px-6 py-4 text-slate-500">
+                            {{ donation.category }}
+                        </td>
+
+
+                        <td class="px-6 py-4 text-slate-500">
+                            {{ donation.quantity }}
+                        </td>
+
+
+                        <td class="px-6 py-4 text-slate-500">
+                            {{ donation.city }}
+                        </td>
+
+
+                        <td class="px-6 py-4">
+
+                            {% if donation.status == "Pending" %}
+
+                                <span class="px-3 py-1.5
+                                             rounded-full
+                                             bg-amber-50
+                                             text-amber-700
+                                             text-xs font-semibold">
+                                    ● Pending
+                                </span>
+
+                            {% elif donation.status == "Accepted" %}
+
+                                <span class="px-3 py-1.5
+                                             rounded-full
+                                             bg-blue-50
+                                             text-blue-700
+                                             text-xs font-semibold">
+                                    ● Accepted
+                                </span>
+
+                            {% elif donation.status == "Completed" %}
+
+                                <span class="px-3 py-1.5
+                                             rounded-full
+                                             bg-emerald-50
+                                             text-emerald-700
+                                             text-xs font-semibold">
+                                    ● Completed
+                                </span>
+
+                            {% elif donation.status == "Rejected" %}
+
+                                <span class="px-3 py-1.5
+                                             rounded-full
+                                             bg-red-50
+                                             text-red-700
+                                             text-xs font-semibold">
+                                    ● Rejected
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+        <div class="text-center py-14">
+
+            <div class="text-4xl">
+                🍱
+            </div>
+
+            <h3 class="font-bold text-slate-800 mt-4">
+                No donations yet
+            </h3>
+
+            <p class="text-sm text-slate-500 mt-2">
+                Your donation activity will appear here.
+            </p>
+
+            <a href="{% url 'donation' %}"
+               class="inline-block mt-5
+                      px-5 py-2.5
+                      rounded-xl
+                      bg-slate-900
+                      text-white
+                      text-sm font-semibold
+                      hover:bg-teal-600
+                      transition">
+
+                Donate Food
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</main>
+
+
+<!-- ================= CHART ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const container =
+    document.getElementById("categoryData");
+
+const labels =
+    Array.from(
+        container.querySelectorAll(".category-label")
+    ).map(function(item) {
+        return item.textContent.trim();
+    });
+
+const values =
+    Array.from(
+        container.querySelectorAll(".category-total")
+    ).map(function(item) {
+        return Number(item.textContent.trim());
+    });
+
+
+/* ================= CHART ================= */
+
+const canvas =
+    document.getElementById("categoryChart");
+
+
+if (canvas && labels.length > 0) {
+
+    new Chart(canvas, {
+
+        type: "doughnut",
+
+        data: {
+
+            labels: labels,
+
+            datasets: [{
+
+                data: values,
+
+                borderWidth: 0,
+
+                hoverOffset: 8
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            cutout: "70%",
+
+            plugins: {
+
+                legend: {
+                    display: false
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* ================= CATEGORY LIST ================= */
+
+const list =
+    document.getElementById("categoryList");
+
+
+labels.forEach(function(label, index) {
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "flex items-center justify-between " +
+        "p-3 rounded-xl bg-slate-50";
+
+
+    row.innerHTML = `
+
+        <div class="flex items-center gap-3">
+
+            <span class="w-2.5 h-2.5
+                         rounded-full
+                         bg-teal-500">
+            </span>
+
+            <span class="text-sm font-medium
+                         text-slate-700">
+                ${label}
+            </span>
+
+        </div>
+
+        <span class="text-sm font-bold
+                     text-slate-900">
+            ${values[index]}
+        </span>
+
+    `;
+
+    list.appendChild(row);
+
+});
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Donation Details | Food Bridge</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+<div class="min-h-screen py-10 px-4">
+
+    <div class="max-w-5xl mx-auto">
+
+        <!-- HEADER -->
+        <div class="flex items-center justify-between mb-8">
+
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">
+                    Donation Details
+                </h1>
+
+                <p class="text-gray-500 mt-1">
+                    Complete information about this food donation
+                </p>
+            </div>
+
+            <a href="{% url 'ngo_dashboard' %}"
+               class="px-4 py-2 bg-white text-gray-700 rounded-lg
+                      shadow-sm hover:bg-gray-50 transition">
+                ← Back
+            </a>
+
+        </div>
+
+
+        <!-- MAIN CARD -->
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+
+            <!-- TOP SECTION -->
+            <div class="p-6 border-b">
+
+                <div class="flex flex-col md:flex-row
+                            md:items-center md:justify-between gap-4">
+
+                    <div>
+                        <p class="text-sm text-gray-500">
+                            Food Donation
+                        </p>
+
+                        <h2 class="text-2xl font-bold text-gray-800 mt-1">
+                            {{ donation.food_name }}
+                        </h2>
+                    </div>
+
+
+                    <!-- STATUS -->
+                    {% if donation.status == "Pending" %}
+
+                        <span class="px-4 py-2 rounded-full
+                                     bg-yellow-100 text-yellow-700
+                                     font-medium">
+                            ⏳ Pending
+                        </span>
+
+                    {% elif donation.status == "Accepted" %}
+
+                        <span class="px-4 py-2 rounded-full
+                                     bg-blue-100 text-blue-700
+                                     font-medium">
+                            🤝 Accepted
+                        </span>
+
+                    {% elif donation.status == "Rejected" %}
+
+                        <span class="px-4 py-2 rounded-full
+                                     bg-red-100 text-red-700
+                                     font-medium">
+                            ✕ Rejected
+                        </span>
+
+                    {% elif donation.status == "Completed" %}
+
+                        <span class="px-4 py-2 rounded-full
+                                     bg-green-100 text-green-700
+                                     font-medium">
+                            ✓ Completed
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTENT -->
+            <div class="p-6">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+
+                    <!-- DONOR INFORMATION -->
+                    <div class="border rounded-xl p-5">
+
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                            👤 Donor Information
+                        </h3>
+
+                        <div class="space-y-4">
+
+                            <div>
+                                <p class="text-sm text-gray-500">
+                                    Donor Name
+                                </p>
+
+                                <p class="font-medium text-gray-800">
+                                    {{ donation.donor_name }}
+                                </p>
+                            </div>
+
+
+                            <div>
+                                <p class="text-sm text-gray-500">
+                                    Phone
+                                </p>
+
+                                <p class="font-medium text-gray-800">
+                                    {{ donation.phone }}
+                                </p>
+                            </div>
+
+
+                            <div>
+                                <p class="text-sm text-gray-500">
+                                    Email
+                                </p>
+
+                                <p class="font-medium text-gray-800">
+                                    {{ donation.email }}
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FOOD INFORMATION -->
+                    <div class="border rounded-xl p-5">
+
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                            🍱 Food Information
+                        </h3>
+
+                        <div class="space-y-4">
+
+                            <div>
+                                <p class="text-sm text-gray-500">
+                                    Food Name
+                                </p>
+
+                                <p class="font-medium text-gray-800">
+                                    {{ donation.food_name }}
+                                </p>
+                            </div>
+
+
+                            <div>
+                                <p class="text-sm text-gray-500">
+                                    Category
+                                </p>
+
+                                <p class="font-medium text-gray-800">
+                                    {{ donation.category }}
+                                </p>
+                            </div>
+
+
+                            <div>
+                                <p class="text-sm text-gray-500">
+                                    Quantity
+                                </p>
+
+                                <p class="font-medium text-gray-800">
+                                    {{ donation.quantity }}
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PICKUP INFORMATION -->
+                    <div class="border rounded-xl p-5">
+
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                            📍 Pickup Information
+                        </h3>
+
+                        <div class="space-y-4">
+
+                            <div>
+                                <p class="text-sm text-gray-500">
+                                    Pickup Address
+                                </p>
+
+                                <p class="font-medium text-gray-800">
+                                    {{ donation.pickup_address }}
+                                </p>
+                            </div>
+
+
+                            <div>
+                                <p class="text-sm text-gray-500">
+                                    City
+                                </p>
+
+                                <p class="font-medium text-gray-800">
+                                    {{ donation.city }}
+                                </p>
+                            </div>
+
+
+                            <div>
+                                <p class="text-sm text-gray-500">
+                                    Expiry Time
+                                </p>
+
+                                <p class="font-medium text-gray-800">
+                                    {{ donation.expiry_time }}
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FOOD IMAGE -->
+                    <div class="border rounded-xl p-5">
+
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                            🖼 Food Image
+                        </h3>
+
+                        {% if donation.food_image %}
+
+                            <img src="{{ donation.food_image.url }}"
+                                 alt="Food Image"
+                                 class="w-full h-64 object-cover
+                                        rounded-xl">
+
+                        {% else %}
+
+                            <div class="h-64 bg-gray-100 rounded-xl
+                                        flex items-center justify-center">
+
+                                <div class="text-center text-gray-400">
+
+                                    <div class="text-5xl">
+                                        🍱
+                                    </div>
+
+                                    <p class="mt-2">
+                                        No image available
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+                <div class="mt-8 pt-6 border-t">
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                        Donation Action
+                    </h3>
+
+
+                    {% if donation.status == "Pending" %}
+
+                        <div class="flex flex-wrap gap-3">
+
+                            <a href="{% url 'accept_donation' donation.id %}"
+                               class="px-5 py-2.5 bg-green-600
+                                      text-white rounded-lg
+                                      hover:bg-green-700 transition">
+                                ✓ Accept Donation
+                            </a>
+
+
+                            <a href="{% url 'reject_donation' donation.id %}"
+                               class="px-5 py-2.5 bg-red-600
+                                      text-white rounded-lg
+                                      hover:bg-red-700 transition">
+                                ✕ Reject Donation
+                            </a>
+
+                        </div>
+
+
+                    {% elif donation.status == "Accepted" %}
+
+                        <a href="{% url 'complete_donation' donation.id %}"
+                           class="inline-block px-5 py-2.5
+                                  bg-blue-600 text-white rounded-lg
+                                  hover:bg-blue-700 transition">
+                            ✓ Mark Completed
+                        </a>
+
+
+                    {% elif donation.status == "Rejected" %}
+
+                        <p class="text-red-600 font-medium">
+                            ✕ This donation has been rejected.
+                        </p>
+
+
+                    {% elif donation.status == "Completed" %}
+
+                        <p class="text-green-600 font-medium">
+                            ✓ This donation has been completed.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

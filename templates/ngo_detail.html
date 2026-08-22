@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ ngo.name }}{% endblock %}
+
+{% block content %}
+
+<main class="min-h-screen bg-slate-50 p-6 lg:p-8">
+
+    <!-- Back -->
+    <div class="mb-6">
+
+        <a href="{% url 'ngo' %}"
+           class="inline-flex items-center gap-2
+                  text-sm font-medium
+                  text-slate-600
+                  hover:text-emerald-600
+                  transition">
+
+            ← Back to NGOs
+
+        </a>
+
+    </div>
+
+
+    <!-- NGO DETAILS CARD -->
+
+    <div class="max-w-4xl mx-auto">
+
+        <div class="bg-white rounded-3xl
+                    border border-slate-200
+                    shadow-sm overflow-hidden">
+
+
+            <!-- TOP SECTION -->
+
+            <div class="bg-emerald-700
+                        px-6 py-10
+                        text-white">
+
+                <div class="flex flex-col md:flex-row
+                            items-start md:items-center
+                            gap-5">
+
+
+                    <!-- NGO ICON -->
+
+                    <div class="w-20 h-20
+                                rounded-2xl
+                                bg-white/10
+                                flex items-center justify-center
+                                text-4xl">
+
+                        🏢
+
+                    </div>
+
+
+                    <!-- NGO NAME -->
+
+                    <div>
+
+                        <h1 class="text-3xl font-bold">
+                            {{ ngo.name }}
+                        </h1>
+
+                        <p class="text-emerald-100 mt-2">
+                            Food Bridge NGO Partner
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DETAILS -->
+
+            <div class="p-6 lg:p-8">
+
+                <h2 class="text-xl font-semibold
+                           text-slate-800 mb-6">
+
+                    NGO Information
+
+                </h2>
+
+
+                <div class="grid grid-cols-1
+                            md:grid-cols-2
+                            gap-6">
+
+                            
+
+                    <!-- ADDRESS -->
+
+                    <div class="bg-slate-50
+                                rounded-2xl p-5">
+
+                        <p class="text-sm
+                                  text-slate-500 mb-2">
+
+                            📍 Address
+
+                        </p>
+
+                        <p class="font-medium
+                                  text-slate-800">
+
+                            {{ ngo.address }}
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- CITY -->
+
+                    <div class="bg-slate-50
+                                rounded-2xl p-5">
+
+                        <p class="text-sm
+                                  text-slate-500 mb-2">
+
+                            🏙️ City
+
+                        </p>
+
+                        <p class="font-medium
+                                  text-slate-800">
+
+                            {{ ngo.city }}
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="bg-slate-50
+                                rounded-2xl p-5">
+
+                        <p class="text-sm
+                                  text-slate-500 mb-2">
+
+                            📞 Phone
+
+                        </p>
+
+                        <p class="font-medium
+                                  text-slate-800">
+
+                            {{ ngo.phone }}
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="bg-slate-50
+                                rounded-2xl p-5">
+
+                        <p class="text-sm
+                                  text-slate-500 mb-2">
+
+                            ✉️ Email
+
+                        </p>
+
+                        <p class="font-medium
+                                  text-slate-800">
+
+                            {{ ngo.email }}
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="mt-6">
+
+                    <h2 class="text-lg font-semibold
+                               text-slate-800 mb-3">
+                        About This NGO
+                    </h2>
+                    <div class="bg-slate-50
+                                rounded-2xl p-5">
+                        <p class="text-slate-600
+                                  leading-7">
+                            {{ ngo.description }}
+                        </p>
+                    </div>
+                </div>
+                <!-- STATUS -->
+                <div class="mt-6
+                            flex items-center
+                            justify-between
+                            border-t border-slate-100
+                            pt-6">
+                    <div>
+                       <p class="text-sm
+                                  text-slate-500">
+                            Current Status
+                        </p>
+                        <span class="inline-flex
+                                     mt-2
+                                     px-3 py-1
+                                     rounded-full
+                                     bg-emerald-50
+                                     text-emerald-700
+                                     text-sm font-semibold">
+                            ● {{ ngo.status }}
+                        </span>
+                    </div>
+<a href="{% url 'request_donation' ngo.id %}"
+   class="inline-block mt-5 px-5 py-3
+          bg-emerald-600 text-white
+          rounded-xl font-semibold
+          hover:bg-emerald-700 transition">
+    🤝 Request Donation
+</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
