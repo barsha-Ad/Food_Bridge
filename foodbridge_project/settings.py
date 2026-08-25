@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 import os
 from pathlib import Path
 from datetime import timedelta
+from dotenv import load_dotenv
 
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,6 +32,9 @@ DEBUG = True
 ALLOWED_HOSTS =  [ "food-bridge-yrdt.onrender.com",
     "localhost",
     "127.0.0.1",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://food-bridge-yrdt.onrender.com",
 ]
 
 
@@ -80,18 +85,32 @@ WSGI_APPLICATION = 'foodbridge_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'foodbridge',
+#         'USER': 'root',
+#         'PASSWORD': 'barshaswain',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
 DATABASES = {
     'default': {
-        'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'foodbridge',
-        'USER': 'root',
-        'PASSWORD': 'barshaswain',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
+        'OPTIONS': {
+            'ssl': {
+                'ssl_mode': 'REQUIRED',
+            },
+        },
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 

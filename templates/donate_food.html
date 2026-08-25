@@ -4,82 +4,357 @@
 
 {% block content %}
 
-<div class="ml-0 md:ml-72 min-h-screen bg-gray-100 p-8">
+<div class="ml-0 md:ml-72 min-h-screen bg-slate-50 px-4 py-6 sm:px-6 lg:px-10">
 
-    <div class="max-w-5xl mx-auto bg-white shadow-xl rounded-3xl overflow-hidden">
+    <div class="max-w-6xl mx-auto">
 
-        <div class="bg-emerald-600 text-white p-6">
-            <h1 class="text-4xl font-bold">🍱 Donate Food</h1>
-            <p class="mt-2 text-emerald-100">
-                Share your extra food with people in need.
-            </p>
+        <!-- Page Header -->
+        <div class="mb-8">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-100
+                            flex items-center justify-center text-2xl">
+                    🍱
+                </div>
+
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-slate-800">
+                        Donate Food
+                    </h1>
+
+                    <p class="text-slate-500 mt-1">
+                        Turn your extra food into someone's meal.
+                    </p>
+                </div>
+            </div>
         </div>
 
-        <form method="POST" enctype="multipart/form-data" class="p-8">
-            {% csrf_token %}
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Main Card -->
+        <div class="bg-white rounded-3xl border border-slate-200
+                    shadow-sm overflow-hidden">
 
-                <div>
-                    <label class="block font-semibold mb-2">Donor Name</label>
-                    {{ form.donor_name }}
-                </div>
+            <!-- Card Header -->
+            <div class="px-6 py-6 md:px-8 border-b border-slate-100
+                        bg-gradient-to-r from-emerald-50 to-white">
 
-                <div>
-                    <label class="block font-semibold mb-2">Phone Number</label>
-                    {{ form.phone }}
-                </div>
+                <h2 class="text-xl font-bold text-slate-800">
+                    Food Donation Details
+                </h2>
 
-                <div>
-                    <label class="block font-semibold mb-2">Email</label>
-                    {{ form.email }}
-                </div>
-
-                <div>
-                    <label class="block font-semibold mb-2">Food Name</label>
-                    {{ form.food_name }}
-                </div>
-
-                <div>
-                    <label class="block font-semibold mb-2">Food Category</label>
-                    {{ form.category }}
-                </div>
-
-                <div>
-                    <label class="block font-semibold mb-2">Quantity</label>
-                    {{ form.quantity }}
-                </div>
-
-                <div class="md:col-span-2">
-                    <label class="block font-semibold mb-2">Pickup Address</label>
-                    {{ form.pickup_address }}
-                </div>
-
-                <div>
-                    <label class="block font-semibold mb-2">City</label>
-                    {{ form.city }}
-                </div>
-
-                <div>
-                    <label class="block font-semibold mb-2">Expiry Time</label>
-                    {{ form.expiry_time }}
-                </div>
-
-                <div class="md:col-span-2">
-                    <label class="block font-semibold mb-2">Food Image</label>
-                    {{ form.food_image }}
-                </div>
+                <p class="text-sm text-slate-500 mt-1">
+                    Please provide the details below so an NGO can
+                    collect your donation.
+                </p>
 
             </div>
 
-            <div class="mt-8">
-                <button type="submit"
-                    class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 rounded-xl text-lg font-semibold transition">
-                    Donate Now
-                </button>
-            </div>
 
-        </form>
+            <!-- Form -->
+            <form method="POST"
+                  enctype="multipart/form-data"
+                  class="p-6 md:p-8">
+
+                {% csrf_token %}
+
+
+                <!-- Donor Information -->
+                <div class="mb-8">
+
+                    <div class="flex items-center gap-3 mb-5">
+
+                        <div class="w-9 h-9 rounded-xl bg-blue-50
+                                    flex items-center justify-center">
+                            👤
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-slate-800">
+                                Donor Information
+                            </h3>
+
+                            <p class="text-xs text-slate-500">
+                                Your contact details
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                        <!-- Donor Name -->
+                        <div>
+                            <label class="block text-sm font-semibold
+                                          text-slate-700 mb-2">
+                                Donor Name
+                            </label>
+
+                            {{ form.donor_name }}
+                        </div>
+
+
+                        <!-- Phone -->
+                        <div>
+                            <label class="block text-sm font-semibold
+                                          text-slate-700 mb-2">
+                                Phone Number
+                            </label>
+
+                            {{ form.phone }}
+                        </div>
+
+
+                        <!-- Email -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-semibold
+                                          text-slate-700 mb-2">
+                                Email Address
+                            </label>
+
+                            {{ form.email }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Food Information -->
+                <div class="mb-8">
+
+                    <div class="flex items-center gap-3 mb-5">
+
+                        <div class="w-9 h-9 rounded-xl bg-orange-50
+                                    flex items-center justify-center">
+                            🍽️
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-slate-800">
+                                Food Information
+                            </h3>
+
+                            <p class="text-xs text-slate-500">
+                                Tell us about the food you want to donate
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                        <!-- Food Name -->
+                        <div>
+                            <label class="block text-sm font-semibold
+                                          text-slate-700 mb-2">
+                                Food Name
+                            </label>
+
+                            {{ form.food_name }}
+                        </div>
+
+
+                        <!-- Category -->
+                        <div>
+                            <label class="block text-sm font-semibold
+                                          text-slate-700 mb-2">
+                                Food Category
+                            </label>
+
+                            {{ form.category }}
+                        </div>
+
+
+                        <!-- Quantity -->
+                        <div>
+                            <label class="block text-sm font-semibold
+                                          text-slate-700 mb-2">
+                                Quantity
+                            </label>
+
+                            {{ form.quantity }}
+                        </div>
+
+
+                        <!-- Expiry -->
+                        <div>
+                            <label class="block text-sm font-semibold
+                                          text-slate-700 mb-2">
+                                Expiry Time
+                            </label>
+
+                            {{ form.expiry_time }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Pickup Information -->
+                <div class="mb-8">
+
+                    <div class="flex items-center gap-3 mb-5">
+
+                        <div class="w-9 h-9 rounded-xl bg-purple-50
+                                    flex items-center justify-center">
+                            📍
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-slate-800">
+                                Pickup Information
+                            </h3>
+
+                            <p class="text-xs text-slate-500">
+                                Where should the NGO collect the food?
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                        <!-- Address -->
+                        <div class="md:col-span-2">
+
+                            <label class="block text-sm font-semibold
+                                          text-slate-700 mb-2">
+                                Pickup Address
+                            </label>
+
+                            {{ form.pickup_address }}
+
+                        </div>
+
+
+                        <!-- City -->
+                        <div>
+
+                            <label class="block text-sm font-semibold
+                                          text-slate-700 mb-2">
+                                City
+                            </label>
+
+                            {{ form.city }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Image Upload -->
+                <div class="mb-8">
+
+                    <div class="flex items-center gap-3 mb-5">
+
+                        <div class="w-9 h-9 rounded-xl bg-pink-50
+                                    flex items-center justify-center">
+                            📷
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-slate-800">
+                                Food Image
+                            </h3>
+
+                            <p class="text-xs text-slate-500">
+                                Upload a clear image of the donated food
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="border-2 border-dashed
+                                border-slate-300 rounded-2xl
+                                p-6 bg-slate-50
+                                hover:border-emerald-400
+                                hover:bg-emerald-50/30
+                                transition">
+
+                        <div class="flex flex-col items-center
+                                    justify-center text-center">
+
+                            <div class="w-14 h-14 rounded-2xl
+                                        bg-white shadow-sm
+                                        flex items-center justify-center
+                                        text-2xl mb-3">
+                                📸
+                            </div>
+
+                            <p class="text-sm font-semibold text-slate-700">
+                                Upload food image
+                            </p>
+
+                            <p class="text-xs text-slate-500 mt-1 mb-4">
+                                JPG, PNG or other supported image formats
+                            </p>
+
+                            {{ form.food_image }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Submit Section -->
+                <div class="border-t border-slate-100 pt-6">
+
+                    <div class="flex flex-col md:flex-row
+                                items-center justify-between gap-4">
+
+                        <div>
+                            <p class="text-sm font-semibold text-slate-700">
+                                Ready to make a difference? ❤️
+                            </p>
+
+                            <p class="text-xs text-slate-500 mt-1">
+                                Your donation will be shared with nearby NGOs.
+                            </p>
+                        </div>
+
+
+                        <button type="submit"
+                                class="w-full md:w-auto
+                                       px-8 py-3.5
+                                       bg-emerald-600
+                                       hover:bg-emerald-700
+                                       text-white
+                                       rounded-xl
+                                       font-semibold
+                                       shadow-sm
+                                       hover:shadow-md
+                                       transition
+                                       duration-200">
+
+                            🍱 Donate Food
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- Bottom Info -->
+        <div class="mt-5 flex items-center justify-center gap-2
+                    text-xs text-slate-500">
+
+            <span>🔒</span>
+            <span>Your donation information is securely stored.</span>
+
+        </div>
 
     </div>
 
